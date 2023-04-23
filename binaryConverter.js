@@ -90,6 +90,8 @@ function decodeInventory(buffer) {
     let view = new Uint8Array(buffer)
     let bufferLength = view.length
 
+    let isIncompatible = false
+
     if (view[3] === 1) {
         console.log("Inventory contains items")
         let itemCount = view[5]
@@ -100,9 +102,15 @@ function decodeInventory(buffer) {
         for (let i = 0; i < itemCount; i++) {
             let itemId = view[viewPosition]
             viewPosition++
+            if (view[viewPosition] !== 0) {
+                isIncompatible = true
+            }
             viewPosition++
             let itemAmount = view[viewPosition]
             viewPosition++
+            if (view[viewPosition] !== 0) {
+                isIncompatible = true
+            }
             viewPosition++
             let itemSlot = view[viewPosition]
             viewPosition++
@@ -121,6 +129,10 @@ function decodeInventory(buffer) {
         }
     } else {
         console.log("Empty inventory")
+    }
+
+    if (isIncompatible) {
+        alert("WARNING: Inventory contains one or more items that go beyond the id limit of 255, at least one item id WILL be incorrect")
     }
 }
 
