@@ -99,16 +99,32 @@ function decodeInventory(buffer) {
 
         let viewPosition = 7
 
+        //clear inventory editor
+        for (let i = 0; i < 25; i++) {
+            let slotElement = document.getElementById("slot" + i)
+            console.log(slotElement)
+            let itemAmountElement = slotElement.querySelector(".item-amount")
+            let itemIdElement = slotElement.querySelector(".item-id")
+
+            itemAmountElement.value = ""
+            itemIdElement.value = ""
+        }
+
+        //load the actual stuff
         for (let i = 0; i < itemCount; i++) {
             let itemId = view[viewPosition]
             viewPosition++
             if (view[viewPosition] !== 0) {
+                console.log("original id: " + itemId)
+                itemId = itemId * (view[viewPosition] + 1)
+                console.log("corrected id: " + itemId)
                 isIncompatible = true
             }
             viewPosition++
             let itemAmount = view[viewPosition]
             viewPosition++
             if (view[viewPosition] !== 0) {
+                itemAmount = itemAmount * (view[viewPosition] + 1)
                 isIncompatible = true
             }
             viewPosition++
@@ -132,7 +148,7 @@ function decodeInventory(buffer) {
     }
 
     if (isIncompatible) {
-        alert("WARNING: Inventory contains one or more items that go beyond the id limit of 255, at least one item id WILL be incorrect")
+        alert("WARNING: Inventory contains one or more items that go beyond the id limit of 255, at least one item can't be saved properly")
     }
 }
 
