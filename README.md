@@ -27,7 +27,7 @@ Note: You should backup your inventory file before doing this because things cou
 
 **##Limitations**
 
-* No numbers can be over 255, this includes item id's and item amounts even if an item with an id
-bigger than 255 exists
+* ~~No numbers can be over 255, this includes item id's and item amounts even if an item with an id bigger than 255 exists~~
+* ~~I also don't know what happens if you load an inventory and it has 255+ of something, it will likely just set it to 255~~
+* *Numbers over 255 should be compatible with the editor now, the new limit is 65 535*
 * I have no idea what happens if you try to put a decimal number, just don't
-* I also don't know what happens if you load an inventory and it has 255+ of something, it will likely just set it to 255

@@ -13,15 +13,15 @@ saveButton.addEventListener("mousedown", () => {
         let itemId = slot.querySelector(".item-id").value
 
         if (itemAmount === "") {
-            itemAmount = "255"
+            itemAmount = "1"
         }
 
         itemId = Number(itemId)
         itemAmount = Number(itemAmount)
 
-        //cant be bigger than 255
-        itemId = Math.min(255,itemId)
-        itemAmount = Math.min(255,itemAmount)
+        //cant be bigger than 65535
+        itemId = Math.min(65535,itemId)
+        itemAmount = Math.min(65535,itemAmount)
 
         //cant be smaller than 0
         itemId = Math.max(0,itemId)

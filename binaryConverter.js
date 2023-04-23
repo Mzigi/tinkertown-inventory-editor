@@ -40,6 +40,17 @@ var saveByteArray = (function () {
     };
 }());
 
+function getHighLow(number) {
+    let high = ((number >> 8) & 0xff);
+    let low = number & 0xff;
+
+    return [low,high]
+}
+
+function correctNumber(high,low) {
+    return (((high & 0xff) << 8) | (low & 0xff))
+}
+
 function encodeInventory(array) {
     let bufferLength = 7 + array.length * 5
     let buffer = new ArrayBuffer(bufferLength)
@@ -70,17 +81,44 @@ function encodeInventory(array) {
         console.log(itemSlot)
 
         //5 bytes
-        view[viewPosition] = itemId
-        viewPosition++
-        view[viewPosition] = 0
-        viewPosition++
-        view[viewPosition] = itemAmount
-        viewPosition++
-        view[viewPosition] = 0
-        viewPosition++
+
+        //item id
+        if (itemId <= 255) {
+            view[viewPosition] = itemId
+            viewPosition++
+            view[viewPosition] = 0
+            viewPosition++
+        } else {
+            let highAndLow = getHighLow(itemId)
+            let high = highAndLow[1]
+            let low = highAndLow[0]
+
+            view[viewPosition] = low
+            viewPosition++
+            view[viewPosition] = high
+            viewPosition++
+        }
+        //item amount
+        if (itemId <= 255) {
+            view[viewPosition] = itemAmount
+            viewPosition++
+            view[viewPosition] = 0
+            viewPosition++
+        } else {
+            let highAndLow = getHighLow(itemAmount)
+            let high = highAndLow[1]
+            let low = highAndLow[0]
+
+            view[viewPosition] = low
+            viewPosition++
+            view[viewPosition] = high
+            viewPosition++
+        }
         view[viewPosition] = itemSlot
         viewPosition++
     }
+
+    console.log(view)
 
     saveByteArray([view],"inventory.dat")
 }
@@ -116,7 +154,7 @@ function decodeInventory(buffer) {
             viewPosition++
             if (view[viewPosition] !== 0) {
                 console.log("original id: " + itemId)
-                itemId = itemId * (view[viewPosition] + 1)
+                itemId = correctNumber(view[viewPosition],itemId)
                 console.log("corrected id: " + itemId)
                 isIncompatible = true
             }
@@ -124,7 +162,7 @@ function decodeInventory(buffer) {
             let itemAmount = view[viewPosition]
             viewPosition++
             if (view[viewPosition] !== 0) {
-                itemAmount = itemAmount * (view[viewPosition] + 1)
+                itemAmount = correctNumber(view[viewPosition],itemAmount)
                 isIncompatible = true
             }
             viewPosition++
@@ -148,7 +186,7 @@ function decodeInventory(buffer) {
     }
 
     if (isIncompatible) {
-        alert("WARNING: Inventory contains one or more items that go beyond the id limit of 255, at least one item can't be saved properly")
+        //alert("WARNING: Inventory contains one or more items that go beyond the id limit of 255, at least one item can't be saved properly")
     }
 }
 
