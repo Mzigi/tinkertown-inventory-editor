@@ -1,0 +1,319 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="main.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <script defer src="binaryConverter.js"></script>
+        <script defer src="script.js"></script>
+    </head>
+    <body>
+        <div id="topbar">
+            <button id="save">Save</button> or
+            <button id="load">Load</button>
+            <input id="choose-file" type="file" accept=".dat">
+        </div>
+        <div id="inventory">
+            <div id="slot0" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot1" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot2" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot3" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot4" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot5" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot6" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot7" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot8" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot9" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot10" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot11" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot12" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot13" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot14" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot15" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot16" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot17" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot18" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot19" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot20" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot21" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot22" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot23" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+            <div id="slot24" class="slot">
+                <input class="item-amount" type="number" placeholder="Count">
+                <input class="item-id" type="number" placeholder="ID">
+            </div>
+        </div>
+        <div id="id-list">
+            Id List<br>
+            0. UNDEFINED<br>
+            1. Stone Brick (Missing Icon)<br>
+            2. Coal<br>
+            3. Copper Bar<br>
+            4. Copper Ore<br>
+            5. Emerald (Missing Icon)<br>
+            6. Glass Bottle<br>
+            7. Gold Bar<br>
+            8. Gold Ore<br>
+            9. Iron Bar<br>
+            10. Iron Ore<br>
+            11. Furnace<br>
+            12. Ruby (Missing Icon)<br>
+            13. Sand<br>
+            14. Silver Bar<br>
+            15. Silver Ore<br>
+            16. Steel Bar (Missing Icon)<br>
+            17. Stone<br>
+            18. Copper Axe<br>
+            19. Gold Axe<br>
+            20. Iron Axe<br>
+            21. Silver Axe<br>
+            22. Steel Axe (Missing Icon)<br>
+            23. Stone Axe<br>
+            24. Bow<br>
+            25. Fists (Missing Icon)<br>
+            26. Flamethrower (Missing Icon) (Dev Only)<br>
+            27. Copper Pickaxe<br>
+            28. Gold Pickaxe<br>
+            29. Iron Pickaxe<br>
+            30. Silver Pickaxe<br>
+            31. Steel Pickaxe<br>
+            32. Stone Pickaxe<br>
+            33. Wood<br>
+            34. NO ITEM<br>
+            35. Wooden Plank<br>
+            36. Stone Floor<br>
+            37. NO ITEM<br>
+            38. NO ITEM<br>
+            39. Anvil<br>
+            40. Stone Wall<br>
+            41. NO ITEM<br>
+            42. NO ITEM<br>
+            43. Wooden Crate<br>
+            44. Fancy Flag<br>
+            45. Candles<br>
+            46. Red Fire Pot<br>
+            47. Torch<br>
+            48. Dock<br>
+            49. Dock (Rotated 270 degrees)<br>
+            50. Shovel<br>
+            51. Mighty Worm<br>
+            52. Dirt<br>
+            53. Wooden Bed<br>
+            54. Wooden Chair<br>
+            55. Wooden Table<br>
+            56. Small Wooden Table<br>
+            57. Wooden Floor<br>
+            58. Wooden Wall<br>
+            59. Large Ornate Wooden Table<br>
+            60. Large Plain Wooden Table<br>
+            61. Large Natural Wooden Table<br>
+            62. Workbench<br>
+            63. Bonfire<br>
+            64. Iron Chestplate<br>
+            65. Green Leather Armor<br>
+            66. BROKEN ITEM<br>
+            67. Iron Helmet<br>
+            68. Brown Leather Hood<br>
+            69. BROKEN ITEM<br>
+            70. Iron Gloves<br>
+            71. Iron Boots<br>
+            72. Green Iton Shield<br>
+            73. NO ITEM<br>
+            74. Skull Helmet<br>
+            75. Batwing<br>
+            76. Red Berries<br>
+            77. Bone<br>
+            78. Green Jelly<br>
+            79. Red Jelly<br>
+            80. Yellow Jelly<br>
+            81. Fishing Rod<br>
+            82. Iron Dagger<br>
+            83. Iron Sword<br>
+            84. Wooden Shield<br>
+            85. Wooden Sword<br>
+            86. NO ITEM<br>
+            87. Plant Fibre<br>
+            88. String<br>
+            89. Cactus<br>
+            90. Grass Seeds<br>
+            91. Barrel<br>
+            92. Empty Shelf<br>
+            93. Bookshelf<br>
+            94. Banner<br>
+            95. Bird House<br>
+            96. Lantern<br>
+            97. NO ITEM<br>
+            98. NO ITEM<br>
+            99. Wooden Crate Stack<br>
+            100. Alchemy Table<br>
+            101. Outfitter<br>
+            102. BROKEN ITEM<br>
+            103. Green Leather Hood<br>
+            104. Torch (Green)<br>
+            105. Ornate Red Carpet<br>
+            106. Half Ornate Gold<br>
+            107. Ornate Gold<br>
+            108. Quarter Ornate Gold<br>
+            109. Trinket<br>
+            110. Pine Tree Sapling<br>
+            111. Sapling<br>
+            112. Palm Tree Sapling<br>
+            113. NO ITEM<br>
+            114. Chain of Lights<br>
+            115. Ice Chair<br>
+            116. Christmas Tree<br>
+            117. Shelf Books Ice<br>
+            118. Shelf Empty Ice<br>
+            119. Ice Table<br>
+            120. Small Ice Table<br>
+            121. Cactus Bed<br>
+            122. Cactus Chair<br>
+            123. Cactus Table<br>
+            124. Large Cactus Table<br>
+            125. Small Cactus Table<br>
+            126. Cactus Armor<br>
+            127. White Fur Coat<br>
+            128. Ice Armor<br>
+            129. Magic Robe<br>
+            130. White Fur Cap<br>
+            131. Ice Helmet<br>
+            132. Cactus Helmet<br>
+            133. Cactus Gloves<br>
+            134. Ice Gloves<br>
+            135. Ice Skates<br>
+            136. Ice Boots<br>
+            137. Winged Boots<br>
+            138. Cactus Shield<br>
+            139. Chitin Shield<br>
+            140. Ice Shield<br>
+            141. Turtle Shield<br>
+            142. Desert Bow<br>
+            143. Ice Bow<br>
+            144. Spiked Club<br>
+            145. Ice Dagger<br>
+            146. Spiked Dagger<br>
+            147. Desert Wand<br>
+            148. Ice Sword<br>
+            149. Spiked Sword<br>
+            150. Ice Whip<br>
+            151. Wooden Door<br>
+            152. Cactus Wall<br>
+            153. Snow Wall<br>
+            154. Wall Ice<br>
+            155. Snow<br>
+            156. Cactus Door<br>
+            157. Ice Door<br>
+            158. Stone Door<br>
+            159. particle emitter thing (NO NAME)<br>
+            160. Boomerang<br>
+            161. particle emitter thing 2, pink with x in middle (NO NAME)<br>
+            162. Roasted Meat<br>
+            163. Archery Target<br>
+            164. Totem Pole<br>
+            165-186 BROKEN ITEM/NO ITEM<br>
+            187. Wooden Fence<br>
+            188. Copper Circlet<br>
+            189. Gold Circlet<br>
+            190. Silver Circlet<br>
+            191. Cloth<br>
+            192. Leather<br>
+            193. Chitin<br>
+            194. Turtle Shell<br>
+            195. Sandworm Pants<br>
+            196. Iron Gates<br>
+            197. Pillar<br>
+            198. Bow<br>
+            199. Chitin Gloves<br>
+            200. Skeleton Gloves<br>
+            201. Wooden Gloves<br>
+            202. Chitin Chestplate<br>
+            203. Skeleton Chestplate<br>
+            204. Wooden Chestplate<br>
+            205. Chitin Helmet<br>
+            206. Wooden Helmet<br>
+            207. Chitin Boots<br>
+            208. Skeleton Boots<br>
+            209. Wooden Boots<br>
+            210. Skeleton Shield<br>
+            211. Wall Mount<br>
+            212. Iron Circlet<br>
+            213. Teleport Potion<br>
+            214. Blue Jelly<br>
+            215. Healing Potion (20 hp)<br>
+            216. Healing Potion (15 hp)<br>
+            217. Cactus Boots<br>
+            218-255 BROKEN ITEM<br>
+        </div>
+    </body>
+</html>
