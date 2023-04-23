@@ -5,7 +5,7 @@ https://mzigi.github.io/tinkertown-inventory-editor/
 
 **#Where are the inventory files stored?**
 
-\Users\YOUR_USER\AppData\LocalLow\Headup\Tinkertown\characters\YOUR_CHARACTER\inventory.dat
+C:\Users\YOUR_USER\AppData\LocalLow\Headup\Tinkertown\characters\YOUR_CHARACTER_NAME\inventory.dat
 
 **##How to load inventory files?**
 
