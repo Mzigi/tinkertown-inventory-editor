@@ -31,4 +31,4 @@ Note: You should backup your inventory file before doing this because things cou
 * ~~I also don't know what happens if you load an inventory and it has 255+ of something, it will likely just set it to 255~~
 * *The new limit is 65 000*
 * I have no idea what happens if you try to put a decimal number, just don't
-* Only id's ranging from 0-740 have been documented, but typing/loading/saving id's outside of that range will work
+* Only id's ranging from 0-730 have been documented, but typing/loading/saving id's outside of that range will work
