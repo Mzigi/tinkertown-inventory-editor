@@ -20,8 +20,8 @@ saveButton.addEventListener("mousedown", () => {
         itemAmount = Number(itemAmount)
 
         //cant be bigger than 65535
-        itemId = Math.min(65535,itemId)
-        itemAmount = Math.min(65535,itemAmount)
+        itemId = Math.min(65500,itemId)
+        itemAmount = Math.min(65500,itemAmount)
 
         //cant be smaller than 0
         itemId = Math.max(0,itemId)
