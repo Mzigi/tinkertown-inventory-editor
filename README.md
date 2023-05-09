@@ -24,11 +24,3 @@ Click "Save" on the top, rename the file to "inventory.dat" if it has a differen
 and drag and drop the "inventory.dat" file you just saved into the character folder and replace the original inventory.dat
 
 Note: You should backup your inventory file before doing this because things could go wrong
-
-**##Limitations**
-
-* ~~No numbers can be over 255, this includes item id's and item amounts even if an item with an id bigger than 255 exists~~
-* ~~I also don't know what happens if you load an inventory and it has 255+ of something, it will likely just set it to 255~~
-* *The new limit is 65 000*
-* I have no idea what happens if you try to put a decimal number, just don't
-* Only id's ranging from 0-780 have been documented, but typing/loading/saving id's outside of that range will work
