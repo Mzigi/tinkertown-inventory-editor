@@ -1,3 +1,11 @@
+DISCLAIMER: This editor only works with save files created before the 1.0 update!
+
+
+
+
+
+Original Description:
+
 # tinkertown-inventory-editor
 
 **Try the editor at**
