@@ -1,4 +1,4 @@
-DISCLAIMER: This editor only works with save files created before the 1.0 update!
+DISCLAIMER: This editor only works with save files created before upcoming database update!
 
 
 
