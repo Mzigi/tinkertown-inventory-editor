@@ -56,9 +56,11 @@ function encodeInventory(array) {
     let buffer = new ArrayBuffer(bufferLength)
     
     let view = new Uint8Array(buffer)
-    //version?
+    //width
     view[0] = 5
+    //height
     view[1] = 5
+    //format?
     view[2] = 1
 
     //random info
