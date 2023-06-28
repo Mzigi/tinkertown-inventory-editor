@@ -20,6 +20,7 @@ body {
     -o-background-size: cover;
     background-size: cover;
     background-image: url(assets/background.png);
+    background-color: #232527;
 }
 
 input {
@@ -249,12 +250,13 @@ input[type=number] {
 
 #item-list-side {
     width: calc(var(--screen-width) - (var(--slot-size) * var(--inventory-width) + var(--inventory-padding) * var(--inventory-width)) + var(--item-list-side-width-extra));
-    height: 90vh;
+    height: 92vh;
     display: block;
     float: right;
     margin-top: 60px;
     margin-right: 10px;
     max-width: 710px;
+    min-width: 690px;
 }
 
 #item-list-searchbar {
@@ -276,7 +278,7 @@ input[type=number] {
     padding: 10px;
     background-color: #191b1d;
     width: 98%;
-    height: 90%;
+    height: 95%;
     display: grid;
     gap: var(--inventory-padding);
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
