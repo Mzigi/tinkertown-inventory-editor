@@ -1,66 +1,287 @@
-body {margin: 0;}
+@font-face {
+    font-family: pixellari;
+    src: url(assets/Pixellari.ttf);
+}
 
-#topbar {
+:root {
+    --slot-size: 64px;
+    --inventory-padding: 10px;
+    --inventory-width: 5;
+    --inventory-columns: auto auto auto auto auto;
+    --screen-width: 1000px;
+    --item-list-side-width-extra: -100px;
+}
+
+body {
+    margin: 0;
+    background-color: #232527;
+}
+
+input {
+    font-family: pixellari;
+}
+
+select {
+    font-family: pixellari;
+}
+
+#navbar {
     width: 100%;
-    display:block;
-    height:5%;
-    background-color: gainsboro;
+    background-color: #191b1d;
+    height: 40px;
+    z-index: 2;
+    position: absolute;
 }
 
-#topbar button {
-    height: 90%;
-    font-size: x-large;
-    margin-left: 5px;
+.navbar-button {
+    margin: 5px;
+    font-family: pixellari;
+    font-size: 28px;
+    font-weight: 100;
+    background-color: transparent;
+    color: aliceblue;
+    transition: 0.12s;
+    cursor: pointer;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-color: aliceblue;
+    border-bottom-style: solid;
+    border-bottom-width: 0px;
 }
 
-#topbar input {
-    height: 90%;
-    font-size: x-large;
-    margin-left: 5px;
+.navbar-button:hover {
+    margin: 4px;
+    font-size: 30px;
+    font-weight: 500;
 }
 
-#inventory {
-    width: 70%;
-    display:block;
-    height: 95%;
-    float:left;
+.navbar-button:active {
+    font-size: 26px;
+    margin: 6px;
 }
 
-.slot {
-    width: 20%;
-    height: 20%;
-    display: block;
-    float: left;
+#navbar-import {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.dropdown {
     position: relative;
 }
 
-.item-id {
-    height: 100%;
-    width: 100%;
-    display: block;
-    font-size: 6rem;
-    text-align: center;
+.dropdown-content {
     position: absolute;
-    top: 0;
-    left: 0;
+    z-index: 10;
+}
+
+.dropdown-open {
+    display:block;
+    background-color: aliceblue;
+}
+
+#dialog-help {
+    font-family: pixellari;
+    background-color: #232527;
+    border-color: #191b1d;
+    border-width: 2px;
+    color: aliceblue;
+}
+
+#close-dialog-help {
+    font-family: pixellari;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    display: block;
+    font-size: 25px;
+    cursor: pointer;
+    user-select: none;
+}
+
+#alert {
+    position: fixed;
+    width: 100%;
+    max-width: 970px;
+    right:0;
+    left:0;
+    top: -60px;
+    z-index: 1;
+    height: 30px;
+    background-color: #00b06f;
+    margin-right: auto;
+    margin-left: auto;
+    transition: top .4s ease;
+    color: aliceblue;
+    font-size: 23px;
+    padding: 12px;
+    text-align: center;
+    font-family: pixellari;
+}
+
+.errorAlert {
+    background-color: rgb(255, 89, 89) !important;
+}
+
+.alertOn {
+    top: 40px !important; 
+}
+
+.title {
+    font-family: pixellari;
+    color: aliceblue;
+    font-size: 32px;
+}
+
+#inventory-side {
+    margin-left: 10px;
+    margin-top: 60px;
+    float: left;
+    width: calc(var(--slot-size) * var(--inventory-width) + var(--inventory-padding) * var(--inventory-width));
+    min-width: 220px;
+}
+
+#inventory {
+    background-color: #191b1d;
+    padding: var(--inventory-padding);
+    gap: var(--inventory-padding);
+    display: grid;
+    width: calc(var(--slot-size) * var(--inventory-width) + var(--inventory-padding) * var(--inventory-width));
+    grid-template-columns: var(--inventory-columns);
+}
+
+.slot {
+    aspect-ratio: 1/1;
+    width: var(--slot-size);
+    height: var(--slot-size);
+    background-color: #232527;
+}
+
+.slot-adaptive-height {
+    aspect-ratio: 1/1;
+    width: var(--slot-size);
+    background-color: #232527;
+}
+
+.contains-item {
+    cursor: grab;
+}
+
+.list-slot {
+    aspect-ratio: 1/1;
+    width: var(--slot-size);
+    background-color: #232527;
+    cursor: grab;
+}
+
+.inventory-size-input {
+    width:32px;
+    height:32px;
+    font-size: 28px;
+}
+
+.inventory-size-x {
+    font-family: pixellari;
+    font-size: 32px;
+    color:aliceblue
+}
+
+/*
+sprites-in-row = image.width / sprite.width
+image background size = slot-size * sprites-in-row
+image background offset = slot-size = 1 sprite
+*/
+
+/*
+background-size.y: image.height / sprite.height * --slot-size;
+background-position.y: (background-size.y / image.height) * sprite.y;
+*/
+
+/*TEST
+x: 112
+y: 224
+width: 32
+height: 16
+
+image.width: 320
+image.height: 384
+*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+*:focus {
+    outline: none;
 }
 
 .item-amount {
-    height: 25%;
-    width: 25%;
-    display: block;
+    background-color: transparent;
+    border: none;
     position: absolute;
-    top: 0;
-    left: 0;
     z-index: 2;
-    text-align: center;
-    font-size: 1rem;
+    width: var(--slot-size);
+    font-family: pixellari;
+    color: aliceblue;
+    font-size: 20px;
+    font-weight: 0;
 }
 
-#id-list {
-    float: left;
-    width: 29%;
-    height: 95%;
+.inventory-item-image {
+    width: 100%;
+    height:100%;
+    image-rendering: pixelated;
+}
+
+#item-list-side {
+    width: calc(var(--screen-width) - (var(--slot-size) * var(--inventory-width) + var(--inventory-padding) * var(--inventory-width)) + var(--item-list-side-width-extra));
+    height: 90vh;
+    display: block;
+    float: right;
+    margin-top: 60px;
+    margin-right: 10px;
+    max-width: 710px;
+}
+
+#item-list-searchbar {
+    font-size: 15px;
+}
+
+#item-list-category {
+    font-size: 15px;
+}
+
+#item-list-result-count {
+    font-size: 15px;
+    font-family: pixellari;
+    color: aliceblue;
+    float: right;
+}
+
+#item-list {
+    padding: 10px;
+    background-color: #191b1d;
+    width: 98%;
+    height: 90%;
+    display: grid;
+    gap: var(--inventory-padding);
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     overflow-y: scroll;
-    font-size: 1.2rem;
+    overflow-y: scroll;
+}
+
+.item-name {
+    font-family: pixellari;
+    color:aliceblue;
+    overflow-wrap: break-word;
 }
