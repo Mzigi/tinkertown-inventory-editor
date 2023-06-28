@@ -45,69 +45,91 @@ class Inventory {
         this.itemDataList = []
     }
 
-    fromBuffer(inventoryBuffer) {
-        //clear everything
-        this.itemDataList = []
-
+    reset() {
         this.width = 5
         this.height = 5
-        this.target = 0
-        
+        this.target = 1
+
         this.containsItems = 0
         this.totalSlots = 0
 
-        //actual loading
-        let view = new simpleView(inventoryBuffer)
-        
-        this.width = view.readUint8()
-        this.height = view.readUint8()
-        this.target = view.readUint8()
+        this.itemDataList = []
+        this.visualize()
+    }
 
-        if (this.target !== 1) {
-            console.warn("Inventory is incompatible!")
-            return "This isn't a player inventory file!"
-        }
+    fromBuffer(inventoryBuffer) {
+        try {
+            //clear everything
+            this.itemDataList = []
 
-        this.containsItems = view.readInt16()
-        if (this.containsItems) {
-            this.totalSlots = view.readInt16()
+            this.width = 5
+            this.height = 5
+            this.target = 0
+            
+            this.containsItems = 0
+            this.totalSlots = 0
 
-            for (let i = 0; i < this.totalSlots; i++) {
-                let begin = 7 + i * 5
-                let end = begin + 5
+            //actual loading
+            let view = new simpleView(inventoryBuffer)
+            
+            this.width = view.readUint8()
+            this.height = view.readUint8()
+            this.target = view.readUint8()
 
-                let itemData = new Item()
-                itemData.fromBuffer(inventoryBuffer.slice(begin,end))
-
-                if (!assetInfo[itemData.id]) {
-                    if (INCLUDES_TILESETS) {
-                        alert("Item with id " + itemData.id + " is missing from the database and will be deleted")
-                    } else {
-                        assetInfo[itemData.id] = {"uniqueID": itemData.id, "typeNumber": 0, "name": "#" + itemData.id, "localizedName": "#" + itemData.id, "description": "Unknown item with id #" + itemData.id, "localizedDescription": "Unknown item with id #" + itemData.id, "category": "Unused", "maxStacks": 99, "isKey": false}
-                    }
-                }
-
-                this.itemDataList.push(itemData)
+            if (this.target !== 1) {
+                console.warn("Inventory is incompatible!")
+                this.reset()
+                return "This isn't a player inventory file!"
             }
-        }
 
-        return true
+            this.containsItems = view.readInt16()
+            if (this.containsItems) {
+                this.totalSlots = view.readInt16()
+
+                for (let i = 0; i < this.totalSlots; i++) {
+                    let begin = 7 + i * 5
+                    let end = begin + 5
+
+                    let itemData = new Item()
+                    itemData.fromBuffer(inventoryBuffer.slice(begin,end))
+
+                    if (!assetInfo[itemData.id]) {
+                        if (INCLUDES_TILESETS) {
+                            alert("Item with id " + itemData.id + " is missing from the database and will be deleted")
+                        } else {
+                            assetInfo[itemData.id] = {"uniqueID": itemData.id, "typeNumber": 0, "name": "#" + itemData.id, "localizedName": "#" + itemData.id, "description": "Unknown item with id #" + itemData.id, "localizedDescription": "Unknown item with id #" + itemData.id, "category": "Unused", "maxStacks": 99, "isKey": false}
+                        }
+                    }
+
+                    this.itemDataList.push(itemData)
+                }
+            }
+
+            return true
+        } catch (error) {
+            this.reset()
+            return error
+        }
     }
 
     writeToBuffer(writeBuffer, byteOffset) {
-        let view = new simpleView(writeBuffer)
-        view.viewOffset = byteOffset
+        try {
+            let view = new simpleView(writeBuffer)
+            view.viewOffset = byteOffset
 
-        view.writeUint8(this.width)
-        view.writeUint8(this.height)
-        view.writeUint8(this.target)
+            view.writeUint8(this.width)
+            view.writeUint8(this.height)
+            view.writeUint8(this.target)
 
-        view.writeInt16(this.containsItems)
-        
-        view.writeInt16(this.totalSlots)
-        for (let i = 0; i < this.totalSlots; i++) {
-            let itemByteOffset = 7 + i * 5
-            this.itemDataList[i].writeToBuffer(writeBuffer, itemByteOffset)
+            view.writeInt16(this.containsItems)
+            
+            view.writeInt16(this.totalSlots)
+            for (let i = 0; i < this.totalSlots; i++) {
+                let itemByteOffset = 7 + i * 5
+                this.itemDataList[i].writeToBuffer(writeBuffer, itemByteOffset)
+            }
+        } catch (error) {
+            alertText(error, true, 3)
         }
     }
 
@@ -133,13 +155,10 @@ class Inventory {
     validateItems() {
         let toSplice = []
         for (let i = 0; i < this.itemDataList.length; i++) {
-            console.log((this.itemDataList[i].slot + 1))
-            console.log((this.width * this.height))
             if ((this.itemDataList[i].slot + 1) > (this.width * this.height)) {
                 toSplice.push(i)
             }
         }
-        console.log(toSplice)
 
         for (let i = toSplice.length - 1; i > -1; i--) {
             this.itemDataList.splice(toSplice[i],1)
