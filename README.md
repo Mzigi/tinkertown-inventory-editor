@@ -1,11 +1,6 @@
 DISCLAIMER: This editor only works with save files created before upcoming database update!
 
 
-
-
-
-Original Description:
-
 # tinkertown-inventory-editor
 
 **Try the editor at**
@@ -17,14 +12,7 @@ C:\Users\YOUR_USER\AppData\LocalLow\Headup\Tinkertown\characters\YOUR_CHARACTER_
 
 **##How to load inventory files?**
 
-Click "choose files" on the top, find you inventory.dat file, then click the "Load" button next to the "choose files" button
-
-**##How do I find an item's id?**
-
-If you're on windows press Control + F to search for the item you want and look for it in the id list, 
-when you have found the item just type the number next to it in an inventory slot you want it in
-
-Note: Not all items are listed on the id list
+Click "import" on the bar at the top of the website, find you inventory.dat file, then click "Ok" to load the file
 
 **##How do I save?**
 
