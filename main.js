@@ -1,5 +1,5 @@
 "use-strict";
-const INCLUDES_TILESETS = false
+const INCLUDES_TILESETS = true
 
 var currentInventory = new Inventory()
 currentInventory.visualize()
@@ -87,7 +87,37 @@ const readBinaryFile = async (file) => {
     }
 }
 
-let imagesToLoad = []
+let imagesToLoad = [
+    "assets/itemTilesets/Actor_Blank.png",
+    "assets/itemTilesets/BuffIcons_3.png",
+    "assets/itemTilesets/Item_Among_Us.png",
+    "assets/itemTilesets/Item_Classes_And_Combat.png",
+    "assets/itemTilesets/Item_Dungeon_Desert.png",
+    "assets/itemTilesets/Item_Dungeon_Forest.png",
+    "assets/itemTilesets/Item_Dungeon_Ice.png",
+    "assets/itemTilesets/Item_Ice.png",
+    "assets/itemTilesets/Item_Lava_Biome.png",
+    "assets/itemTilesets/Item_Lava_Dungeon.png",
+    "assets/itemTilesets/Item_NPC_Update.png",
+    "assets/itemTilesets/Item_Shovel_Update.png",
+    "assets/itemTilesets/Item_Upgrade_Materials.png",
+    "assets/itemTilesets/Item_Void_Dungeon.png",
+    "assets/itemTilesets/Item_Volcano_Mini_Dungeons.png",
+    "assets/itemTilesets/Items_Desert.png",
+    "assets/itemTilesets/Items_Farming.png",
+    "assets/itemTilesets/Items_Fishing.png",
+    "assets/itemTilesets/Items_Forest.png",
+    "assets/itemTilesets/Items_Halloween.png",
+    "assets/itemTilesets/Items_Housing.png",
+    "assets/itemTilesets/Items_Lunar_New_Year.png",
+    "assets/itemTilesets/Items_Summer.png",
+    "assets/itemTilesets/Items.png",
+    "assets/itemTilesets/Items2.png",
+    "assets/itemTilesets/Skeleton.png",
+    "assets/itemTilesets/Tileset_Forest.png",
+    "assets/itemTilesets/Tileset_Mines.png",
+    "assets/itemTilesets/Tileset_Transportation_Items.png"
+]
 
 var images = {}
 
@@ -201,12 +231,21 @@ function updateSearch() {
                 itemImage.classList.add("inventory-item-image")
                 itemImage.src = "assets/transparent.png"
                 itemImage.draggable = false
-                slot.alt = (itemInfo.name || itemInfo.localizedName) + "#" + itemInfo.uniqueID
-                slot.title = (itemInfo.name || itemInfo.localizedName) + "#" + itemInfo.uniqueID
+
+                //title for when hovering over image
+                let itemTitle = (itemInfo.name || itemInfo.localizedName) + "#" + itemInfo.uniqueID
+                if (itemInfo.category != "") {
+                    itemTitle = itemTitle + " (" + itemInfo.category + ")"
+                }
+                slot.alt = itemTitle
+                slot.title = itemTitle
+
+                //loading image
                 if (itemInfo.tileset != "" && itemInfo.tileset != undefined && INCLUDES_TILESETS) {
                     let image = images[`assets/itemTilesets/${itemInfo.tileset}.png`]
     
                     //calculate spritesheet size and position
+                    console.log(`assets/itemTilesets/${itemInfo.tileset}.png`)
                     let backgroundSizeX = (image.naturalWidth / itemInfo.rectW) * slotSize
                     let backgroundSizeY = (image.naturalHeight / itemInfo.rectH) * slotSize
     

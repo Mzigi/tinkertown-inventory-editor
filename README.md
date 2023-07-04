@@ -20,3 +20,7 @@ Click "Save" on the top, rename the file to "inventory.dat" if it has a differen
 and drag and drop the "inventory.dat" file you just saved into the character folder and replace the original inventory.dat
 
 Note: You should backup your inventory file before doing this because things could go wrong
+
+**##Permissions##**
+
+Read the LICENSE file for info on what you're allowed to do with the software.

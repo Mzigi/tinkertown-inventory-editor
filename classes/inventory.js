@@ -333,8 +333,15 @@ class Inventory {
                     itemImage.classList.add("inventory-item-image")
                     itemImage.src = "assets/transparent.png"
                     itemImage.draggable = false
-                    itemImage.alt = (itemInfo.name || itemInfo.localizedName) + "#" + itemInfo.uniqueID
-                    itemImage.title = (itemInfo.name || itemInfo.localizedName) + "#" + itemInfo.uniqueID
+                    
+                    //title for when hovering over image
+                    let itemTitle = (itemInfo.name || itemInfo.localizedName) + "#" + itemInfo.uniqueID
+                    if (itemInfo.category != "") {
+                        itemTitle = itemTitle + " (" + itemInfo.category + ")"
+                    }
+                    itemImage.alt = itemTitle
+                    itemImage.title = itemTitle
+                    
                     if (itemInfo.tileset != "" && itemInfo.tileset != undefined && INCLUDES_TILESETS) {
                         let image = images[`assets/itemTilesets/${itemInfo.tileset}.png`]
 
