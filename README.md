@@ -12,7 +12,7 @@ C:\Users\YOUR_USER\AppData\LocalLow\Headup\Tinkertown\characters\YOUR_CHARACTER_
 
 **##How to load inventory files?**
 
-Click "import" on the bar at the top of the website, find you inventory.dat file, then click "Ok" to load the file
+Click "import" on the bar at the top of the website, find your inventory.dat file, then click "Ok" to load the file
 
 **##How do I save?**
 
