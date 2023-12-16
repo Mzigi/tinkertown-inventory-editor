@@ -116,7 +116,8 @@ let imagesToLoad = [
     "assets/itemTilesets/Skeleton.png",
     "assets/itemTilesets/Tileset_Forest.png",
     "assets/itemTilesets/Tileset_Mines.png",
-    "assets/itemTilesets/Tileset_Transportation_Items.png"
+    "assets/itemTilesets/Tileset_Transportation_Items.png",
+    "assets/itemTilesets/Item_Rewards.png",
 ]
 
 var images = {}
@@ -244,8 +245,9 @@ function updateSearch() {
                 if (itemInfo.tileset != "" && itemInfo.tileset != undefined && INCLUDES_TILESETS) {
                     let image = images[`assets/itemTilesets/${itemInfo.tileset}.png`]
     
+                    //console.log(`Using image at assets/itemTilesets/${itemInfo.tileset}.png`)
+
                     //calculate spritesheet size and position
-                    console.log(`assets/itemTilesets/${itemInfo.tileset}.png`)
                     let backgroundSizeX = (image.naturalWidth / itemInfo.rectW) * slotSize
                     let backgroundSizeY = (image.naturalHeight / itemInfo.rectH) * slotSize
     

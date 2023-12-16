@@ -257,6 +257,7 @@ input[type=number] {
     margin-right: 10px;
     max-width: 710px;
     min-width: 690px;
+    z-index: 2;
 }
 
 #item-list-searchbar {

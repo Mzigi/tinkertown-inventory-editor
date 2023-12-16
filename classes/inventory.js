@@ -19,6 +19,11 @@ itemCount: int16
 slot: byte (because this is a byte max inventory size is 16x16 if you want to save properly)
 */
 
+let InventoryFormat = {
+    "Container": 0,
+    "Player": 1,
+}
+
 var saveByteArray = (function () {
     var a = document.createElement("a");
     document.body.appendChild(a);
@@ -39,6 +44,16 @@ class Inventory {
         this.height = 5
         this.target = 1
 
+        //InventoryFormat.Player
+        this.actorId = 0
+
+        //InventoryFormat.Container
+        this.chunkX = 0
+        this.chunkY = 0
+        this.x = 0
+        this.y = 0
+        this.z = 0
+
         this.containsItems = 0
         this.totalSlots = 0
 
@@ -49,6 +64,16 @@ class Inventory {
         this.width = 5
         this.height = 5
         this.target = 1
+
+        //InventoryFormat.Player
+        this.actorId = 0
+
+        //InventoryFormat.Container
+        this.chunkX = 0
+        this.chunkY = 0
+        this.x = 0
+        this.y = 0
+        this.z = 0
 
         this.containsItems = 0
         this.totalSlots = 0
@@ -76,18 +101,36 @@ class Inventory {
             this.height = view.readUint8()
             this.target = view.readUint8()
 
-            if (this.target !== 1) {
+            /*if (this.target !== 1) {
                 console.warn("Inventory is incompatible!")
                 this.reset()
                 return "This isn't a player inventory file!"
+            }*/
+
+            switch (this.target) {
+                case InventoryFormat.Player:
+                    this.actorId = view.readInt16()
+                    break;
+                case InventoryFormat.Container:
+                    this.chunkX = view.readInt16()
+                    this.chunkY = view.readInt16()
+                    this.x = view.readUint8()
+                    this.y = view.readUint8()
+                    this.z = view.readUint8()
+                    break;
             }
 
-            this.containsItems = view.readInt16()
+            //this is incorrect, it doesnt represent if an inventory contains items
+            this.containsItems = 1 //view.readInt16()
             if (this.containsItems) {
                 this.totalSlots = view.readInt16()
 
                 for (let i = 0; i < this.totalSlots; i++) {
-                    let begin = 7 + i * 5
+                    let beginConstant = 7
+                    if (this.target == InventoryFormat.Container) {
+                        beginConstant = 12
+                    }
+                    let begin = beginConstant + i * 5
                     let end = begin + 5
 
                     let itemData = new Item()
@@ -95,7 +138,7 @@ class Inventory {
 
                     if (!assetInfo[itemData.id]) {
                         if (INCLUDES_TILESETS) {
-                            alert("Item with id " + itemData.id + " is missing from the database and will be deleted")
+                            //alert("Item with id " + itemData.id + " is missing from the database and will be deleted")
                         } else {
                             assetInfo[itemData.id] = {"uniqueID": itemData.id, "typeNumber": 0, "name": "#" + itemData.id, "localizedName": "#" + itemData.id, "description": "Unknown item with id #" + itemData.id, "localizedDescription": "Unknown item with id #" + itemData.id, "category": "Unused", "maxStacks": 99, "isKey": false}
                         }
