@@ -177,7 +177,7 @@ select {
 .list-slot {
     aspect-ratio: 1/1;
     width: var(--slot-size);
-    background-color: #232527;
+    background-color: transparent;
     cursor: grab;
 }
 
@@ -246,17 +246,17 @@ input[type=number] {
     width: 100%;
     height:100%;
     image-rendering: pixelated;
+    background-color: #232527;
 }
 
 #item-list-side {
-    width: calc(var(--screen-width) - (var(--slot-size) * var(--inventory-width) + var(--inventory-padding) * var(--inventory-width)) + var(--item-list-side-width-extra));
+    width: calc((var(--screen-width) - (var(--slot-size) * var(--inventory-width) + var(--inventory-padding) * var(--inventory-width)) + var(--item-list-side-width-extra)));
     height: 92vh;
     display: block;
     float: right;
     margin-top: 60px;
     margin-right: 10px;
-    max-width: 710px;
-    min-width: 690px;
+    min-width: calc(var(--slot-size)*5);
     z-index: 2;
 }
 
@@ -282,8 +282,7 @@ input[type=number] {
     height: 95%;
     display: grid;
     gap: var(--inventory-padding);
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, 64px);
     overflow-y: scroll;
     overflow-y: scroll;
 }
