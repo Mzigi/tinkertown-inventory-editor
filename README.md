@@ -1,4 +1,4 @@
-DISCLAIMER: This editor only works with save files created before upcoming database update!
+DISCLAIMER: This editor only works with save files created before upcoming database update (2.0 update)!
 
 
 # tinkertown-inventory-editor
